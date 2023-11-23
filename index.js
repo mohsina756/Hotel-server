@@ -83,7 +83,7 @@ async function run() {
       res.send(result);
     });
     // Load all booked Rooms
-    app.get("/booked/:email",  async (req, res) => {
+    app.get("/booked/:email", verifyToken, async (req, res) => {
       const email = req.params.email;
       const query = { user: email };
       const result = await bookedCollection.find(query).toArray();
